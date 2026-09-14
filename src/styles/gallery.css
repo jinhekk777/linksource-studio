@@ -1,0 +1,224 @@
+/* Approved A2 exhibition composition, using the light Noto Sans SC / Manrope type system. */
+html.gallery{--type-ui:'Studio Manrope','Studio Sans',sans-serif;--type-display:'Studio Sans','Studio Manrope',sans-serif;--type-latin:'Studio Manrope',sans-serif;--type-weight:400;--type-track:.025em;--type-hero:clamp(48px,6.111vw,108px);--type-world:clamp(44px,5.833vw,108px);--type-section:clamp(28px,2.639vw,44px);--type-english-hero:clamp(60px,7.222vw,124px);--type-english-world:clamp(56px,6.667vw,120px);--type-english-section:40px;--type-english-weight:450;--type-english-track:-.045em;--type-body:17px;--type-subtitle:24px;--type-line:1.22}
+html.gallery{font-family:var(--type-ui);font-synthesis:none;text-rendering:optimizeLegibility}
+html.gallery h1,html.gallery h2,html.gallery h3,html.gallery .world-name,html.gallery .world-subtitle,html.gallery .case-statement>p{font-family:var(--type-display);font-weight:var(--type-weight);letter-spacing:var(--type-track);text-wrap:balance}
+html.gallery .hero-copy h1{font-size:var(--type-hero);line-height:var(--type-line)}
+html.gallery .hero-copy{bottom:164px}
+html.gallery .hero-copy>.eyebrow{font-size:13px;letter-spacing:.08em;margin-bottom:32px}
+html.gallery .hero-copy-bottom{margin-bottom:8px}
+html.gallery .hero-description{font-size:var(--type-body);line-height:1.85;max-width:400px}
+html.gallery .hero-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+html.gallery .hero-copy h1{grid-column:1/8}
+html.gallery .hero-copy-bottom{grid-column:9/13}
+html.gallery .desktop-nav a{font-size:14px;font-weight:450;letter-spacing:.025em}
+html.gallery .hero-foot{font-size:12px}
+html.gallery .hero-foot>.film-button{font-size:14px}
+html.gallery .world-name{font-size:var(--type-world);line-height:1.25}
+html.gallery .world-subtitle{font-size:var(--type-subtitle);font-weight:400;line-height:1.55;letter-spacing:.18em;margin-top:24px;margin-right:-.18em}
+html.gallery .world-heading>.eyebrow{font-size:12px;letter-spacing:.1em;margin-bottom:28px}
+html.gallery .world-bottom>p{font-size:18px;line-height:1.9;max-width:570px}
+html.gallery .world-enter,html.gallery .world-actions .film-button,html.gallery .hero-explore,html.gallery .text-link{font-size:14px;letter-spacing:.02em}
+html.gallery .scene-toggle{font-size:12px}
+html.gallery .worlds-intro{grid-template-columns:1.5fr 1fr;gap:28px 60px}
+html.gallery .worlds-intro h2{font-size:var(--type-section);line-height:1.5;max-width:700px;text-wrap:balance}
+html.gallery .worlds-description{font-size:16px;line-height:1.85}
+html.gallery .worlds-contents a{font-size:14px}
+html.gallery .worlds-contents small{font-size:11px}
+html.gallery .section-heading h2,html.gallery .case-introduction h2,html.gallery .chapter-narrative h3{font-size:var(--type-section);line-height:1.5}
+html.gallery .case-introduction h2{max-width:760px}
+html.gallery .case-introduction>p{max-width:680px;font-size:var(--type-body);line-height:1.95;margin-top:28px}
+html.gallery .chapter-narrative p{font-size:var(--type-body);line-height:1.95}
+html.gallery .project-facts dt{font-size:12px;line-height:1.6}
+html.gallery .project-facts dd{font-size:15px;line-height:1.7}
+html.gallery .studio-intro-copy h2{font-size:var(--type-section);line-height:1.5}
+html.gallery:lang(en) h1,html.gallery:lang(en) h2,html.gallery:lang(en) h3,html.gallery:lang(en) .world-name,html.gallery:lang(en) .case-statement>p{font-family:var(--type-latin);font-weight:var(--type-english-weight);letter-spacing:var(--type-english-track)}
+html.gallery:lang(en) .hero-copy h1{font-size:var(--type-english-hero);line-height:1.05}
+html.gallery:lang(en) .world-name{font-size:var(--type-english-world);line-height:1.08}
+html.gallery:lang(en) .worlds-intro h2,html.gallery:lang(en) .case-introduction h2,html.gallery:lang(en) .section-heading h2,html.gallery:lang(en) .chapter-narrative h3{font-size:var(--type-english-section);line-height:1.25}
+html.gallery:lang(en) .case-introduction>p,html.gallery:lang(en) .chapter-narrative p,html.gallery:lang(en) .hero-description{line-height:1.8}
+@media(max-width:760px){
+ html.gallery{--type-hero:48px;--type-world:44px;--type-section:28px;--type-subtitle:20px;--type-english-hero:58px;--type-english-world:52px;--type-english-section:30px}
+ html.gallery{--type-body:15px}
+ html.gallery .hero-copy{bottom:160px}
+ html.gallery .hero-grid{display:block}
+ html.gallery .hero-copy>.eyebrow{font-size:12px;margin-bottom:24px;letter-spacing:.03em}
+ html.gallery .hero-copy-bottom{margin-top:26px;margin-bottom:0}
+ html.gallery .hero-description{line-height:1.85;max-width:350px}
+ html.gallery .world-heading>.eyebrow{font-size:11px;letter-spacing:.04em;margin-bottom:24px}
+ html.gallery .world-subtitle{margin-top:20px}
+ html.gallery .world-bottom>p{font-size:16px;line-height:1.8}
+ html.gallery .world-enter,html.gallery .world-actions .film-button{font-size:13px}
+ html.gallery .world-actions{gap:16px}
+ html.gallery .world-enter{gap:12px}
+ html.gallery .worlds-intro{display:block}
+ html.gallery .worlds-description{font-size:15px}
+ html.gallery .worlds-contents a{font-size:13px}
+ html.gallery .case-introduction>p{line-height:1.9}
+ html.gallery .project-facts dd{font-size:14px}
+ html.gallery .hero-foot>.film-button{font-size:12px}
+}
+@media(max-width:360px){
+ html.gallery{--type-hero:44px;--type-world:40px;--type-english-hero:52px;--type-english-world:46px}
+ html.gallery .world-enter,html.gallery .world-actions .film-button{font-size:12px}
+}
+
+html.gallery{--gutter:clamp(24px,5vw,88px)}
+html.gallery .site-header{height:112px;grid-template-columns:1fr auto 72px;gap:48px}
+html.gallery .desktop-nav{gap:34px}
+html.gallery .language-switch{border-left:0;padding-left:0}
+html.gallery .world-top{top:44px;letter-spacing:.045em}
+html.gallery .world-top i{background:#f5f4ee;width:4px;height:4px}
+html.gallery .world-heading>.eyebrow{font-size:12px;font-weight:400;letter-spacing:.045em}
+html.gallery .world-subtitle{letter-spacing:.16em;font-size:24px;line-height:1.5;margin-top:18px}
+html.gallery .world-bottom>p{font-size:16px;line-height:1.9}
+html.gallery .world-enter>span{border:0;background:transparent;color:inherit;width:36px;height:36px;border-radius:0}
+html.gallery .world-enter svg{width:26px;height:26px}
+html.gallery .scene-toggle{font-size:11px;bottom:32px;opacity:.72}
+html.gallery .worlds-intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:38px 24px;padding-block:108px 64px}
+html.gallery .worlds-intro>.eyebrow{grid-column:1/3;grid-row:1;margin-top:12px}
+html.gallery .worlds-intro h2{grid-column:4/13;max-width:none;font-size:clamp(44px,4.2vw,66px);line-height:1.38;text-align:left;letter-spacing:.01em}
+html.gallery .worlds-intro h2>span{display:block}
+html.gallery .worlds-description{grid-column:9/13;max-width:360px;justify-self:start;font-size:15px;margin-top:6px}
+html.gallery .worlds-contents{grid-column:4/13;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:16px;padding-top:28px}
+html.gallery .worlds-contents a{display:grid;grid-template-columns:auto 1fr auto;gap:10px;font-size:13px}
+html.gallery .worlds-contents small{font-size:10px}
+html.gallery .worlds-contents svg{justify-self:end}
+html.gallery .case-overview{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:42px 24px;padding-block:96px 100px}
+html.gallery .case-introduction{display:contents}
+html.gallery .case-overview>.eyebrow{grid-column:1/3;grid-row:1;margin-top:12px}
+html.gallery .case-introduction h2{grid-column:4/13;grid-row:1;font-size:clamp(36px,3.333vw,52px);line-height:1.5;max-width:730px;letter-spacing:.015em;text-wrap:balance}
+html.gallery .case-introduction>p{grid-column:7/13;grid-row:2;font-size:17px;line-height:1.95;max-width:570px;margin:0}
+html.gallery .project-facts{grid-column:4/7;grid-row:2;display:flex;flex-direction:column;gap:20px;padding:4px 36px 0 0;margin:0;border:0}
+html.gallery .project-facts>div{border:0;padding:0}
+html.gallery .project-facts dt{font-size:11px;margin-bottom:8px;opacity:.7}
+html.gallery .project-facts dd{font-size:14px;line-height:1.7}
+html.gallery .chapter-narrative{grid-template-columns:4fr 5fr;gap:12%;padding-left:calc(var(--gutter) + 16vw)}
+html.gallery .chapter-narrative h3{font-size:34px;line-height:1.5}
+html.gallery .chapter-narrative p{font-size:17px;line-height:1.95}
+html.gallery:lang(en) .worlds-intro h2{font-size:64px;line-height:1.15}
+html.gallery:lang(en) .case-introduction h2{font-size:48px;line-height:1.2;max-width:760px}
+html.gallery .home-hero{background:#090b0e;min-height:780px}
+html.gallery .hero-media{inset:160px var(--gutter) 140px calc(var(--gutter) + 17vw)}
+html.gallery .hero-media .hero-image{object-position:60% center}
+html.gallery .hero-media .hero-shade{background:linear-gradient(90deg,#090b0e55,transparent 75%),linear-gradient(0deg,#090b0e55,transparent 60%)}
+html.gallery .hero-copy{top:196px;bottom:auto;left:var(--gutter);right:var(--gutter)}
+html.gallery .hero-copy>.eyebrow{margin-bottom:38px;font-size:12px}
+html.gallery .hero-grid{display:block}
+html.gallery .hero-copy h1{font-size:clamp(70px,7.222vw,118px);line-height:1.27;letter-spacing:.02em;max-width:800px}
+html.gallery .hero-copy h1>.title-line:last-child{margin-left:.7em}
+html.gallery .hero-copy-bottom{position:absolute;top:min(394px,calc(100svh - 480px));right:32px;width:330px}
+html.gallery .hero-description{font-size:15px;line-height:1.85;max-width:330px}
+html.gallery .hero-explore{font-size:13px;margin-top:22px;padding-top:12px;border-radius:0}
+html.gallery .hero-explore>span{width:28px;height:28px;border:0;border-radius:0}
+html.gallery .hero-foot{bottom:29px;height:76px;font-size:11px;border:0}
+html.gallery .hero-foot>.film-button{font-size:12px}
+html.gallery .hero-folio{display:flex;position:absolute;left:var(--gutter);bottom:202px;flex-direction:column;font-size:11px;line-height:1.8;letter-spacing:.09em;color:#d2d6d6}
+html.gallery .world-scene,html.gallery .case-opening{background:#090b0e}
+html.gallery .world-scene .world-scene-media{inset:94px var(--gutter) 210px;width:auto;height:auto}
+html.gallery .scene-picture{inset:0}
+html.gallery .world-vignette{inset:94px var(--gutter) 210px;background:linear-gradient(180deg,#080b0e10,transparent 40%,#080b0e55)}
+html.gallery .world-heading{left:calc(var(--gutter) + 48px);right:calc(var(--gutter) + 48px);top:auto;bottom:152px;transform:none;text-align:left;max-width:none}
+html.gallery .world-heading>.eyebrow{display:none}
+html.gallery .world-name{font-size:clamp(80px,8.333vw,140px);line-height:1.18;letter-spacing:.015em}
+html.gallery .world-heading h1>a,html.gallery .world-heading h2>a{display:flex;align-items:baseline;gap:38px}
+html.gallery .world-subtitle{display:inline-block;font-size:23px;letter-spacing:.12em;margin:0 0 0 22px}
+html.gallery .world-heading h1{display:flex;align-items:baseline;gap:38px}
+html.gallery .world-bottom{left:var(--gutter);right:var(--gutter);bottom:58px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:80px;padding-top:25px;border-top:1px solid #ffffff35}
+html.gallery .world-bottom>p{font-size:15px;max-width:540px;line-height:1.85;margin:0}
+html.gallery .world-actions{gap:32px}
+html.gallery .world-actions .film-button{font-size:12px;opacity:.75}
+html.gallery .world-enter{font-size:13px}
+html.gallery .scene-toggle{bottom:14px;font-size:10px}
+html.gallery .case-opening-top{top:124px}
+html.gallery .case-opening .case-hero{inset:170px var(--gutter) 210px;width:auto;height:auto}
+html.gallery .case-opening .world-vignette{inset:170px var(--gutter) 210px}
+html.gallery .case-opening .world-heading{top:auto;bottom:152px}
+html.gallery .worlds-intro>.eyebrow{grid-column:1/13}
+html.gallery .worlds-intro h2{grid-column:1/9;grid-row:2}
+html.gallery .worlds-intro h2>span{display:inline}
+html.gallery .worlds-description{grid-column:10/13;grid-row:2;align-self:end}
+html.gallery .worlds-contents{grid-column:1/13}
+html.gallery .case-overview>.eyebrow{grid-column:1/13;grid-row:1}
+html.gallery .case-introduction h2{grid-column:1/8;grid-row:2;font-size:clamp(40px,3.75vw,60px);max-width:690px}
+html.gallery .case-introduction>p{grid-column:9/13;grid-row:2;align-self:end;font-size:16px}
+html.gallery .project-facts{grid-column:1/13;grid-row:3;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:1px solid #ffffff30;padding-top:30px;margin-top:22px}
+html.gallery .chapter-panorama{margin-inline:var(--gutter);height:72svh}
+html.gallery:lang(en) .hero-copy h1{font-size:clamp(82px,7.778vw,132px);line-height:1.07;letter-spacing:-.045em}
+html.gallery:lang(en) .world-name{font-size:clamp(80px,8.611vw,144px);line-height:1.15;letter-spacing:-.045em}
+html.gallery:lang(en) .worlds-intro h2>span+span::before{content:' '}
+
+@media(max-width:1050px) and (min-width:761px){
+ html.gallery .hero-copy-bottom{width:280px;right:24px}
+ html.gallery .world-heading h1>a,html.gallery .world-heading h2>a,html.gallery .world-heading h1{gap:16px}
+ html.gallery .world-subtitle{font-size:18px;margin-left:0}
+}
+@media(max-width:760px){
+ html.gallery{--gutter:22px}
+ html.gallery .site-header{height:88px;grid-template-columns:1fr 62px 34px;gap:16px}
+ html.gallery .world-top{top:26px;font-size:11px}
+ html.gallery .scene-toggle{font-size:10px;bottom:20px}
+ html.gallery .worlds-intro{display:block;padding-block:58px 38px}
+ html.gallery .worlds-intro h2{font-size:32px;line-height:1.45;margin:28px 0}
+ html.gallery .worlds-description{font-size:14px;margin-left:28%;max-width:260px}
+ html.gallery .worlds-contents{grid-template-columns:repeat(2,1fr);gap:14px 20px;margin-top:30px;padding-top:20px}
+ html.gallery .worlds-contents a{font-size:12px;gap:8px}
+ html.gallery .case-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 20px;padding-block:50px 60px}
+ html.gallery .case-overview>.eyebrow{grid-column:1/-1;grid-row:1;margin:0}
+ html.gallery .case-introduction h2{grid-column:1/-1;grid-row:2;font-size:30px;line-height:1.5;max-width:none}
+ html.gallery .case-introduction>p{grid-column:1/-1;grid-row:3;font-size:15px;line-height:1.9;margin:0}
+ html.gallery .project-facts{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:1fr;gap:18px;border-top:1px solid #ffffff30;padding:24px 0 0;margin:0}
+ html.gallery .project-facts>div{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:baseline}
+ html.gallery .project-facts dt{font-size:11px;margin:0}
+ html.gallery .project-facts dd{font-size:14px}
+ html.gallery .chapter-narrative{grid-template-columns:1fr;gap:24px;padding:36px var(--gutter) 56px}
+ html.gallery .chapter-narrative h3{font-size:28px}
+ html.gallery .chapter-narrative p{font-size:15px}
+ html.gallery:lang(en) .case-introduction h2{font-size:32px;line-height:1.25}
+ html.gallery:lang(en) .worlds-intro h2{font-size:38px;line-height:1.2}
+ html.gallery .home-hero{min-height:780px}
+ html.gallery .hero-media{inset:182px var(--gutter) 162px calc(var(--gutter) + 30px)}
+ html.gallery .hero-copy{top:142px;bottom:auto;left:var(--gutter);right:var(--gutter)}
+ html.gallery .hero-copy>.eyebrow{font-size:11px;margin-bottom:30px}
+ html.gallery .hero-copy h1{font-size:48px;line-height:1.35}
+ html.gallery .hero-copy h1>.title-line:last-child{margin-left:.4em}
+ html.gallery .hero-copy-bottom{position:static;width:auto;margin:136px 0 0 30px}
+ html.gallery .hero-description{font-size:14px;line-height:1.85}
+ html.gallery .hero-explore{margin-top:18px;font-size:12px}
+ html.gallery .hero-folio{display:none}
+ html.gallery .hero-foot{height:100px;bottom:20px;border-top:1px solid #ffffff30}
+ html.gallery .hero-foot>.film-button{font-size:11px}
+ html.gallery .world-scene .world-scene-media{inset:66px var(--gutter) 236px}
+ html.gallery .world-vignette{inset:66px var(--gutter) 236px}
+ html.gallery .world-heading,html.gallery .case-opening .world-heading{left:var(--gutter);right:var(--gutter);bottom:209px}
+ html.gallery .world-name{font-size:54px;line-height:1.22;letter-spacing:0}
+ html.gallery .world-heading h1>a,html.gallery .world-heading h2>a,html.gallery .world-heading h1{display:block}
+ html.gallery .world-subtitle{display:block;font-size:18px;letter-spacing:.13em;margin:12px 0 0}
+ html.gallery .world-bottom{display:block;left:var(--gutter);right:var(--gutter);bottom:52px;border:0;padding-top:0}
+ html.gallery .world-bottom>p{font-size:14px;line-height:1.8;margin-bottom:24px;max-width:320px}
+ html.gallery .world-actions{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #ffffff35;padding-top:8px}
+ html.gallery .world-actions .film-button{font-size:11px}
+ html.gallery .world-enter{font-size:12px;gap:8px}
+ html.gallery .world-enter>span{width:28px;height:28px}
+ html.gallery .world-enter svg{width:22px;height:22px}
+ html.gallery .scene-toggle{font-size:10px;bottom:15px}
+ html.gallery .case-opening-top{top:106px}
+ html.gallery .case-opening .case-hero,html.gallery .case-opening .world-vignette{inset:154px var(--gutter) 236px}
+ html.gallery .chapter-panorama{height:auto;margin-inline:var(--gutter)}
+ html.gallery:lang(en) .hero-copy h1{font-size:56px;line-height:1.12}
+ html.gallery:lang(en) .world-name{font-size:60px;line-height:1.1}
+}
+@media(max-width:360px){
+ html.gallery .hero-copy h1{font-size:43px}
+ html.gallery .world-name{font-size:48px}
+ html.gallery .hero-copy-bottom{margin-top:126px}
+ html.gallery:lang(en) .hero-copy h1{font-size:48px}
+ html.gallery:lang(en) .world-name{font-size:50px}
+}
+
+/* Frames remain fixed; only their inner media receives scroll transforms. */
+html.gallery .hero-media{overflow:hidden}
+html.gallery .hero-media .ambient-video{object-position:60% center}
+@media(min-width:761px) and (prefers-reduced-motion:no-preference){
+ html.gallery .world-scene.is-near .scene-picture{will-change:auto}
+ html.gallery .world-scene.is-near .scene-picture>img,html.gallery .world-scene.is-near .scene-picture>video{will-change:transform}
+}

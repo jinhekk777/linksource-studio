@@ -1,0 +1,24 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import SceneMedia from './SceneMedia.astro';
+import WorldTitle from './WorldTitle.astro';
+import FilmButton from './FilmButton.astro';
+import Arrow from './Arrow.astro';
+import {choose,localePath,ui,type Locale} from '../data/i18n';
+import {scenePreviews} from '../data/scene-previews';
+interface Props {project:CollectionEntry<'projects'>;locale:Locale;priority?:boolean;opening?:boolean;}
+const {project,locale,priority=false,opening=false}=Astro.props,p=project.data,t=choose(locale);
+const href=localePath(`/projects/${p.slug}/`,locale);
+const preview=scenePreviews[p.slug];
+const Heading=opening?'h1':'h2';
+---
+<article id={`world-${p.slug}`} class:list={['world-scene','project-card',{'home-opening':opening}]} data-scene data-category={p.group} style={`--project-accent:${p.accent}`} aria-labelledby={`title-${p.slug}`}>
+  <a href={href} class="world-scene-media project-card-image" data-world-transition style={`--world-transition:world-${p.slug}`} data-cursor-label={t('走入世界','ENTER WORLD')} aria-label={t(`探索${p.title}`,`Explore ${p.title}`)} tabindex="-1">
+    <SceneMedia image={p.image} slug={p.slug} alt={t(`${p.title}项目场景`,`${p.title} — project scene`)} priority={priority} />
+  </a>
+  <div class="world-vignette" aria-hidden="true"></div>
+  <div class="world-top"><span class="eyebrow"><i></i>0{p.order} / 04</span><span>{p.category}</span></div>
+  <div class="world-heading"><p class="eyebrow">{t('大空间沉浸式体验','An immersive experience')}</p><Heading id={`title-${p.slug}`} aria-label={p.title}><a href={href}><WorldTitle project={p} locale={locale} /></a></Heading></div>
+  <div class="world-bottom"><p>{p.summary}</p><div class="world-actions">{p.video&&<FilmButton id={p.video} title={p.title} image={p.image} locale={locale} />}<a href={href} class="world-enter" data-magnet>{t('走入世界','Enter the world')}<span data-magnet-face><Arrow /></span></a></div></div>
+  {preview && <button class="scene-toggle" data-scene-toggle type="button" aria-pressed="false" aria-label={ui[locale].play}><span data-scene-toggle-label>{ui[locale].play}</span><span data-scene-toggle-icon aria-hidden="true">▷</span></button>}
+</article>

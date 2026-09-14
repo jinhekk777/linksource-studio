@@ -1,0 +1,13 @@
+---
+import {withBase} from '../data/urls';
+import Photo from './Photo.astro';
+import {scenePreviews} from '../data/scene-previews';
+interface Props {image:string;slug:string;alt:string;priority?:boolean;}
+const {image,slug,alt,priority=false}=Astro.props;
+const preview=scenePreviews[slug];
+const focal:Record<string,string>={zhongkui:'35% center',bxcz:'36% center',panda:'55% center'};
+---
+<div class="scene-picture" style={`--scene-focal:${focal[slug]??'center'}`}>
+  <Photo image={image} alt={alt} priority={priority} sizes="(max-width: 760px) 150vh, 100vw" />
+  {preview && <video class="scene-preview" data-scene-preview data-src={withBase(preview)} muted playsinline loop preload="none" aria-hidden="true"></video>}
+</div>

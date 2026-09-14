@@ -1,0 +1,41 @@
+---
+import {withBase} from '../data/urls';
+import {getVisibleProjects} from '../data/project-catalog';
+import Photo from '../components/Photo.astro';
+import Layout from '../layouts/Layout.astro';
+import {localizeProject} from '../data/projects-localized';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props {locale:Locale;}
+const {locale}=Astro.props,t=choose(locale),href=(s:string)=>localePath(s,locale);
+const projects=(await getVisibleProjects()).map(p=>localizeProject(p,locale).data);
+const sources:Record<string,string>={zhongkui:'/media/zhongkui-preview.mp4',taosi:'/media/taosi-world-preview.mp4',bxcz:'/media/bxcz-preview.mp4'};
+const tags:Record<string,string>={zhongkui:t('东方志怪 · 沉浸式体验','ADVENTURE & MYTHOLOGY'),taosi:t('文明探索 · 沉浸式体验','FEATURED EXPERIENCE'),mecha:t('VR 游戏 · 概念占位','VR GAME · CONCEPT PREVIEW'),bxcz:t('趣味世界 · 亲子冒险','FUN & FAMILY')};
+---
+<Layout page="home" locale={locale}>
+<h1 class="sr-only">LINK SOURCE STUDIO — {t('沉浸式体验','Immersive experiences')}</h1>
+<div class="home-showcase" id="selected" aria-label={t('精选沉浸式体验','Selected immersive experiences')}>
+{projects.map((p,i)=><section class:list={['home-project',{'is-seen':i===0}]} id={'world-'+p.slug} data-project={p.slug} aria-label={p.title}>
+  <div class="home-project-frame">
+  <div class="home-scene" style={'--scene-name:scene-'+p.slug}>
+    {p.placeholder?<Photo class="home-concept-image" sizes="(max-width:900px) 1600px, 100vw" image={p.image} alt={t('巨型机甲 VR 游戏概念视觉，非实机画面','Giant-mecha VR concept artwork, not gameplay footage')} priority/>:<>
+    <video class="home-video" poster={withBase('/images/preview-'+p.slug+'.webp')} muted loop playsinline preload="none" data-home-video data-src={withBase(sources[p.slug])} aria-hidden="true"></video>
+    <div class="home-poster" style={'background-image:url('+withBase('/images/preview-'+p.slug+'.webp')+')'} aria-hidden="true"></div>
+    </>}
+  </div>
+  <div class="home-overlay" aria-hidden="true"></div>
+  <div class="slide-content"><span class="tag">{tags[p.slug]}</span><h2><span class="slide-title-text">{p.title}</span></h2><p class="desc">{p.description}</p></div>
+  <a class="btn-explore" href={href('/projects/'+p.slug+'/')}>{p.placeholder?t('项目预告','Project preview'):t('探索详情','Explore more')} <span class="button-arrow" aria-hidden="true">→</span></a>
+  {i===0&&<a class="home-scroll-cue" href={'#world-'+projects[1].slug} aria-label={t('浏览下一个项目','Browse the next project')}><span class="scroll-cue-mark" aria-hidden="true"><span class="scroll-cue-axis"></span><span class="scroll-cue-pixel"></span><span class="scroll-cue-edge"></span></span></a>}
+  </div>
+</section>)}
+</div>
+<div class="home-controls">
+  <nav class="slide-pagination" aria-label={t('选择项目','Select a project')}>{projects.map((p,i)=><a href={'#world-'+p.slug} data-slide={i} aria-label={t('查看','View ')+p.title} aria-current={i===0?'true':undefined}><span class="project-progress-number" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><span class="project-progress-track" role="progressbar" aria-label={p.title+ t('浏览进度',' scroll progress')} aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="project-progress-fill"></span><span class="project-progress-head"></span></span></a>)}<span class="pagination-caption" aria-hidden="true">{t('浏览','SCROLL')}</span></nav>
+  <button class="background-toggle" hidden={projects[0]?.placeholder} data-background-toggle type="button" aria-label={t('播放动态背景','Play background video')} aria-pressed="false"><span data-background-icon aria-hidden="true">▷</span><span class="sr-only" data-background-label>{t('播放动态背景','Play background video')}</span></button>
+</div>
+<section class="home-ending">
+  <span class="page-subtitle">LINK SOURCE STUDIO</span>
+  <h2>{t('一起创造新的体验。','Create a new experience together.')}</h2>
+  <div class="home-ending-links"><a class="btn-book" href={href('/collaboration/')}>{t('联系合作','Get in touch')} ↗</a><a class="home-all-projects" href={href('/projects/')}>{t('查看所有作品','View all projects')} →</a></div>
+</section>
+</Layout>

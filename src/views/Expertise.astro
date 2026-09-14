@@ -1,0 +1,7 @@
+---
+import PageRedirect from '../components/PageRedirect.astro';
+import {localePath,type Locale} from '../data/i18n';
+interface Props {locale:Locale;}
+const {locale}=Astro.props;
+---
+<PageRedirect to={localePath('/studio/#capabilities',locale)} locale={locale} fragments={['capabilities','narrative','visual','interaction']} />

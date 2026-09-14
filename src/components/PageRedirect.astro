@@ -1,0 +1,7 @@
+---
+import {choose,type Locale} from '../data/i18n';
+interface Props {to:string;locale:Locale;fragments:string[];}
+const {to,locale,fragments}=Astro.props,t=choose(locale);
+---
+<!doctype html>
+<html lang={locale==='zh'?'zh-CN':'en'} data-redirect={to}><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex" /><title>LINK SOURCE STUDIO</title><meta http-equiv="refresh" content={'0;url='+to} /><script is:inline define:vars={{to,fragments}}>const target=new URL(to,location.origin);if(fragments.includes(location.hash.slice(1)))target.hash=location.hash;location.replace(target.href);</script></head><body><a href={to}>{t('继续浏览','Continue')}</a></body></html>

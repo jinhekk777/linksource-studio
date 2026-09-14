@@ -1,0 +1,59 @@
+/* Short action responses share one curve; the page's reading rhythm stays calm. */
+.pixel-arrow { overflow: hidden; }
+.capability-preview { display: none; }
+[data-magnet-face] { position: relative; isolation: isolate; }
+.play-glyph { position: relative; z-index: 1; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .arrow-travel { transition: transform .65s var(--ease-out); }
+  :is(a, button):is(:hover, :focus-visible) .arrow-travel { transform: translate(24px, -24px); }
+
+  .hero-explore>[data-magnet-face], .film-button.round .play-icon, .large-arrow { overflow: hidden; }
+  .hero-explore>[data-magnet-face]::before, .film-button.round .play-icon::before, .large-arrow::before {
+    content: ''; position: absolute; z-index: -1; inset: -1px; border-radius: inherit;
+    background: var(--text); transform: translateY(105%); transition: transform .7s var(--ease-out);
+  }
+  .hero-explore:is(:hover, :focus-visible)>[data-magnet-face]::before,
+  .film-button.round:is(:hover, :focus-visible) .play-icon::before,
+  .cta-heading:is(:hover, :focus-visible) .large-arrow::before { transform: translateY(0); }
+  .hero-explore:is(:hover, :focus-visible)>[data-magnet-face],
+  .hero-film .film-button:is(:hover, :focus-visible) .play-icon { background: transparent; color: var(--bg-deep); }
+  .cta-heading:is(:hover, :focus-visible) .large-arrow { background: transparent; color: var(--blue); }
+}
+
+/* An image window belongs to its row, so it never obscures another service. */
+@media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
+  .capability-links>a {
+    position: relative; grid-template-columns: 56px minmax(0, 1fr) minmax(180px, 23%) 40px;
+    padding: 28px 0; gap: 28px; min-height: 184px;
+  }
+  .capability-links>a:hover { padding-left: 0; color: var(--text); }
+  .capability-links>a::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px;
+    background: var(--text); transform: scaleX(0); transform-origin: left;
+    transition: transform .8s var(--ease-out);
+  }
+  .capability-links>a:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+  .capability-links>a>.eyebrow { transition: color .4s ease; }
+  .capability-links>a:is(:hover, :focus-visible)>.eyebrow { color: var(--accent); }
+  .capability-preview {
+    display: block; pointer-events: none; opacity: 0; overflow: hidden;
+    clip-path: inset(48% 0 48% 0); transform: translateY(8px);
+    transition: clip-path .7s var(--ease-out), opacity .35s ease, transform .7s var(--ease-out);
+  }
+  .capability-preview>img { aspect-ratio: 2; height: auto; transform: scale(1.12); transition: transform .95s var(--ease-out); }
+  .capability-preview>figcaption { margin-top: 8px; font-size: 9px; line-height: 1.5; color: var(--muted); }
+  .capability-links>a:is(:hover, :focus-visible) .capability-preview { opacity: 1; clip-path: inset(0); transform: none; }
+  .capability-links>a:is(:hover, :focus-visible) .capability-preview>img { transform: scale(1); }
+}
+
+/* Native shared-element navigation; unsupported browsers use ordinary links. */
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  .case-hero[data-world-transition], a[data-world-transition]:is(:hover, :focus-visible) { view-transition-name: var(--world-transition); }
+  ::view-transition-group(*) { animation-duration: .72s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arrow-travel, .capability-preview, .capability-preview>img, .capability-links>a::after { transition: none; }
+  [data-magnet-face] { translate: none!important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none!important; }
+}

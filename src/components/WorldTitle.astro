@@ -1,0 +1,8 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import type {Locale} from '../data/i18n';
+interface Props {project:CollectionEntry<'projects'>['data'];locale:Locale;}
+const {project:p,locale}=Astro.props;
+---
+<span class="world-name">{p.name}</span>
+{locale==='zh' && p.name!==p.subtitle && p.name!==p.title && <span class="world-subtitle">{p.subtitle}</span>}

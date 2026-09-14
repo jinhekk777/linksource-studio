@@ -1,0 +1,23 @@
+{
+  "slug": "mecha",
+  "order": 0,
+  "listed": true,
+  "placeholder": true,
+  "title": "机甲 VR 游戏",
+  "name": "机甲 VR 游戏",
+  "subtitle": "项目概念占位",
+  "english": "MECHA VR",
+  "category": "VR 游戏 · 概念占位",
+  "group": "科幻游戏",
+  "summary": "进入巨型机甲的世界。",
+  "headline": "进入巨型机甲的世界。",
+  "description": "巨型机甲题材 VR 游戏。项目名称与正式内容待公布。",
+  "image": "mecha-concept",
+  "heroLines": [
+    "机甲 VR 游戏"
+  ],
+  "statement": "",
+  "accent": "#7d8bff",
+  "chapters": [],
+  "focus": []
+}

@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props{locale:Locale;}
+const {locale}=Astro.props,t=choose(locale);
+---
+<Layout title={t('页面未找到','Page not found')} page="not-found" locale={locale}><section class="not-found"><p class="eyebrow">404</p><h1>{t('这个世界还没有被发现。','A world yet to be discovered.')}</h1><p>{t('页面可能已移动，继续探索其他作品吧。','This page may have moved. Explore our other experiences.')}</p><a href={localePath('/',locale)} class="button">{t('返回首页','Back to home')} →</a></section></Layout>

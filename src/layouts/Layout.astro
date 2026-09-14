@@ -1,0 +1,90 @@
+---
+import {withBase,withoutBase} from '../data/urls';
+import '../styles/fonts.css';
+import '../styles/newbee.css';
+import '../styles/studio-motion.css';
+import '../styles/cursor.css';
+import Logo from '../components/Logo.astro';
+import {getVisibleProjects} from '../data/project-catalog';
+import {site} from '../data/studio';
+import {choose,localePath,type Locale} from '../data/i18n';
+import {localizeProject} from '../data/projects-localized';
+interface Props {title?:string;description?:string;image?:string;page?:string;locale?:Locale;back?:string;}
+const {title,image='zhongkui-3',page='',locale='zh',back='/'}=Astro.props;
+const t=choose(locale),href=(p:string)=>localePath(p,locale);
+const description=Astro.props.description??t(site.description,'LINK SOURCE STUDIO creates immersive content, digital experiences and visual worlds.');
+const path=withoutBase(Astro.url.pathname).replace(/^\/en(?=\/|$)/,'')||'/';
+const alternate=page==='not-found'?withBase(t('/en/404/','/404.html')):localePath(path,locale==='zh'?'en':'zh');
+const canonical=Astro.site?new URL(Astro.url.pathname,Astro.site):undefined;
+const shareImage=withBase('/images/'+image+'-1920.webp');
+const projects=(await getVisibleProjects()).map(p=>localizeProject(p,locale).data);
+---
+<!doctype html>
+<html lang={locale==='zh'?'zh-CN':'en'} class={page==='home'?'home-document':undefined}>
+<head>
+<style is:inline>@view-transition{navigation:auto}@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}}</style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#101114"/>
+<title>{title?title+' — '+site.name:site.name}</title><meta name="description" content={description}/>
+{!Astro.site&&<meta name="robots" content="noindex,nofollow"/>}
+{canonical&&<><link rel="canonical" href={canonical}/><link rel="alternate" hreflang={locale==='zh'?'en':'zh-CN'} href={new URL(alternate,Astro.site)}/></>}
+<meta property="og:type" content="website"/><meta property="og:title" content={title?title+' — '+site.name:site.name}/><meta property="og:description" content={description}/><meta property="og:image" content={Astro.site?new URL(shareImage,Astro.site):shareImage}/>
+<script is:inline>
+(() => {
+ const sceneFrom=url=>{
+  const match=url.pathname.match(/\/projects\/(mecha|zhongkui|taosi|bxcz)\//);
+  return match?.[1]||url.hash.match(/^#world-(mecha|zhongkui|taosi|bxcz)$/)?.[1]||'';
+ };
+ const nameScene=slug=>{
+  document.querySelectorAll('.home-scene,.project-scene,.work-media,.next-project-media').forEach(el=>{
+   const name=el.style.getPropertyValue('--scene-name').trim();
+   el.style.viewTransitionName=slug&&name==='scene-'+slug?name:'none';
+  });
+ };
+ window.addEventListener('pageswap',event=>{
+  if(!event.viewTransition)return;
+  event.viewTransition.ready.catch(()=>{});
+  const destination=new URL(event.activation?.entry?.url||location.href);
+  let slug=sceneFrom(destination);
+  if(!slug&&/\/projects\/$/.test(destination.pathname))slug=sceneFrom(new URL(location.href));
+  nameScene(slug);
+  try{sessionStorage.setItem('lss-transition-scene',slug)}catch{}
+ });
+ window.addEventListener('pagereveal',event=>{
+  if(event.viewTransition)event.viewTransition.ready.catch(()=>{});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)event.viewTransition?.skipTransition();
+  let slug=sceneFrom(new URL(location.href));
+  if(!slug&&event.viewTransition){try{slug=sessionStorage.getItem('lss-transition-scene')||''}catch{}}
+  nameScene(slug);
+ });
+})();
+</script>
+<link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml"/>
+</head>
+<body class={'page-'+page}>
+<a class="skip-link" href="#main">{t('跳转到正文','Skip to content')}</a>
+<header class:list={['site-header',{'solid-header':page!=='home'&&page!=='project'}]}>
+<a class="logo-link" href={href('/')} aria-label={'LINK SOURCE STUDIO '+t('首页','Home')}><Logo/></a>
+<nav class="desktop-nav" aria-label={t('主导航','Main navigation')}>
+<div class="nav-dropdown">
+<button class="nav-item dropdown-toggle" type="button" aria-expanded="false" aria-controls="project-menu">{t('作品','Work')} <span aria-hidden="true">⌄</span></button>
+<div class="dropdown-menu" id="project-menu" hidden>
+  <div class="work-menu-heading"><span>{t('精选作品','Selected work')}</span><span>01 — {String(projects.length).padStart(2,'0')}</span></div>
+  <div class="work-menu-grid">{projects.map(p=><a class="nav-project-card" href={href('/projects/'+p.slug+'/')}>
+    <span class="nav-project-image"><img src={withBase('/images/'+p.image+'-480.webp')} alt="" width="480" height="300" loading="lazy" decoding="async"/></span>
+    <span class="nav-project-title">{p.title}<span aria-hidden="true">↗</span></span>
+    <span class="nav-project-category">{p.category}</span>
+  </a>)}</div>
+  <a class="all-projects" href={href('/projects/')}><span>{t('查看全部','View all')}</span><span aria-hidden="true">→</span></a>
+</div>
+</div>
+<a class="nav-item" href={href('/studio/')}>{t('关于我们','About us')}</a><a class="nav-item" href={href('/collaboration/')}>{t('联系合作','Contact')}</a>
+</nav>
+<div class="header-actions">{page!=='home'&&<a class="back-link" href={href(back)}>← <span>{t('返回首页','Back to home')}</span></a>}<a class="language-switch" href={alternate} hreflang={locale==='zh'?'en':'zh-CN'} lang={locale==='zh'?'en':'zh-CN'} aria-label={t('Switch to English','切换为中文')}>{t('EN','中文')}</a><button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label={t('打开导航','Open navigation')}><span></span><span></span></button></div>
+</header>
+<dialog id="mobile-menu" aria-label={t('网站导航','Site navigation')}><div class="menu-head"><Logo/><button class="menu-close" aria-label={t('关闭导航','Close navigation')}>×</button></div><nav><a href={href('/')}>{t('首页','Home')}</a><a href={href('/projects/')}>{t('所有体验','All experiences')}</a><a href={href('/studio/')}>{t('关于我们','About us')}</a><a href={href('/collaboration/')}>{t('联系我们','Contact')}</a></nav></dialog>
+<main id="main"><slot/></main>
+<footer class="site-footer">© {new Date().getFullYear()} LINK SOURCE STUDIO. {t('版权所有。','All rights reserved.')}</footer>
+<dialog id="film-dialog" aria-labelledby="film-title"><div class="film-head"><h2 id="film-title">{t('项目影片','Project film')}</h2><button class="film-close" type="button" aria-label={t('关闭影片','Close film')}>×</button></div><video id="film-video" controls playsinline preload="none"></video><p id="film-status" role="status"></p></dialog>
+<script>import '../scripts/newbee'; import '../scripts/studio-motion';</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+/* The native cursor keeps its exact hotspot; only the optional label follows. */
+.cursor-hint { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: url('/cursors/pixel-default.svg') 2 2, default; }
+  a[href], button, summary, .faq-list summary, [role='button'], label[for] { cursor: url('/cursors/pixel-link.svg') 2 2, pointer; }
+  :is(a[href], button, summary, [role='button'], label[for]) * { cursor: inherit; }
+  :is(a[href], button, summary, [role='button']):active { cursor: url('/cursors/pixel-pressed.svg') 2 2, pointer; }
+  /* Readable text inherits the pixel arrow; only editable fields use an I-beam. */
+  input:not([type]), input:is([type='text'], [type='search'], [type='email'], [type='url'], [type='tel'], [type='password'], [type='number']), textarea,
+  [contenteditable=''], [contenteditable='true'], [contenteditable='plaintext-only'] { cursor: text; }
+  :is(button, input):disabled, [aria-disabled='true'] { cursor: not-allowed; }
+  video[controls], iframe, select { cursor: auto; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-hint {
+    display: block; position: fixed; top: 0; left: 0; z-index: 90;
+    width: max-content; pointer-events: none; user-select: none;
+    opacity: 0; transition: opacity .16s ease; contain: layout style;
+  }
+  .cursor-hint.is-visible { opacity: 1; }
+  .cursor-hint-inner {
+    display: flex; align-items: center; gap: 11px; padding: 12px 15px;
+    color: #f1f0eb; background: #101114;
+    font: 10px/1.2 'Consolas', monospace; letter-spacing: .08em; white-space: nowrap;
+    clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+    transform: translateY(4px); transition: transform .4s var(--ease-out);
+  }
+  .cursor-hint-inner::before { content: ''; width: 4px; height: 4px; background: #7d8bff; box-shadow: 0 6px 0 #7d8bff; margin-top: -6px; }
+  .cursor-hint.is-visible .cursor-hint-inner { transform: none; }
+}

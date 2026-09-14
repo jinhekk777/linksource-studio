@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="212 28 376 164" role="img" aria-label="LiNK pixel wordmark">
+      <defs><rect id="p" width="13" height="13" rx="1"/></defs>
+      <g transform="translate(220 26)" fill="#f1f0eb">
+        <!-- L: five-column cell 0–84 -->
+        <use href="#p" x="0" y="36"/><use href="#p" x="0" y="54"/><use href="#p" x="0" y="72"/><use href="#p" x="0" y="90"/><use href="#p" x="0" y="108"/><use href="#p" x="0" y="126"/><use href="#p" x="0" y="144"/><use href="#p" x="18" y="144"/><use href="#p" x="36" y="144"/><use href="#p" x="54" y="144"/><use href="#p" x="72" y="144"/>
+        <!-- lowercase i: compacted to match the visual sidebearing of L and N -->
+        <use href="#p" x="121" y="54"/><use href="#p" x="121" y="72"/><use href="#p" x="121" y="90"/><use href="#p" x="121" y="108"/><use href="#p" x="121" y="126"/><use href="#p" x="121" y="144"/>
+        <!-- N -->
+        <use href="#p" x="170" y="36"/><use href="#p" x="170" y="54"/><use href="#p" x="170" y="72"/><use href="#p" x="170" y="90"/><use href="#p" x="170" y="108"/><use href="#p" x="170" y="126"/><use href="#p" x="170" y="144"/><use href="#p" x="242" y="36"/><use href="#p" x="242" y="54"/><use href="#p" x="242" y="72"/><use href="#p" x="242" y="90"/><use href="#p" x="242" y="108"/><use href="#p" x="242" y="126"/><use href="#p" x="242" y="144"/><use href="#p" x="188" y="54"/><use href="#p" x="206" y="72"/><use href="#p" x="224" y="90"/>
+        <!-- K -->
+        <use href="#p" x="275" y="36"/><use href="#p" x="275" y="54"/><use href="#p" x="275" y="72"/><use href="#p" x="275" y="90"/><use href="#p" x="275" y="108"/><use href="#p" x="275" y="126"/><use href="#p" x="275" y="144"/><use href="#p" x="347" y="36"/><use href="#p" x="329" y="54"/><use href="#p" x="311" y="72"/><use href="#p" x="329" y="108"/><use href="#p" x="347" y="126"/><use href="#p" x="347" y="144"/>
+      </g>
+      <!-- i dot is deliberately centered in the same five-column cell -->
+      <rect x="341" y="36" width="13" height="13" rx="1" fill="#7d8bff"/>
+
+
+    </svg>

@@ -1,0 +1,11 @@
+---
+import Arrow from './Arrow.astro';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props {compact?:boolean;locale?:Locale;}
+const {compact=false,locale='zh'}=Astro.props,t=choose(locale);
+---
+<section class:list={['collaboration-cta','section-pad',{compact}]}>
+  <p class="eyebrow"><span class="status-dot"></span>{t('开始一次合作','Start a conversation')}</p>
+  <a class="cta-heading" href={localePath('/collaboration/',locale)} data-magnet><h2>{t('下一个世界','The next world.')}<br />{t('一起创造','Let’s create it.')}</h2><span class="large-arrow" data-magnet-face><Arrow /></span></a>
+  <div class="cta-bottom"><p>{t('从一个想法开始，探索内容、视觉与体验的更多可能。','Explore new possibilities for content, visuals and experiences.')}</p><a class="text-link" href={localePath('/collaboration/',locale)}>{t('了解合作方式','How we can collaborate')} <Arrow /></a></div>
+</section>

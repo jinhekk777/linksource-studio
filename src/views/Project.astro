@@ -1,0 +1,48 @@
+---
+import {withBase} from '../data/urls';
+import type {CollectionEntry} from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import {localizeProject} from '../data/projects-localized';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props {project:CollectionEntry<'projects'>;next:CollectionEntry<'projects'>;locale:Locale;}
+const {project,next,locale}=Astro.props,t=choose(locale),href=(s:string)=>localePath(s,locale);
+const p=localizeProject(project,locale).data,n=localizeProject(next,locale).data;
+---
+<Layout title={p.title} description={p.description} image={p.image} page="project" locale={locale} back={'/#world-'+p.slug}>
+<article>
+<header class="project-hero">
+  <div class="project-scene" style={'--scene-name:scene-'+p.slug}>
+  <Photo class="project-background" image={p.image} alt={p.placeholder?t('机甲 VR 游戏概念视觉，非实机画面','Mecha VR concept artwork, not gameplay footage'):t(p.title+'项目场景',p.title+' — project scene')} sizes={p.placeholder?'(max-width:900px) 1600px, 100vw':'100vw'} priority/>
+  <div class="hero-shade" aria-hidden="true"></div>
+  </div>
+  <div class="hero-content"><span class="tag">{p.placeholder?t('概念视觉 · 非实机画面','CONCEPT ART · NOT GAMEPLAY'):t('沉浸式体验','IMMERSIVE EXPERIENCE')}</span><h1 class="hero-title">{p.title}</h1><p class="hero-desc">{p.description}</p></div>
+</header>
+{!p.placeholder&&<>
+<div class="info-bar">
+  <div class="info-item"><h2>{t('内容主题','Theme')}</h2><span>{p.category}</span></div>
+  <div class="info-item"><h2>{t('体验形式','Format')}</h2><span>{t('大空间自由行走','Free-roaming VR')}</span></div>
+  <div class="info-item"><h2>{t('我们的职责','Our role')}</h2><span>{p.role}</span></div>
+  <div class="info-item"><h2>{t('项目影片','Project film')}</h2><button class="film-trigger" data-film={p.video} data-title={p.title} data-poster={withBase('/images/'+p.image+'-1920.webp')} type="button">{t('观看影片','Watch film')} ▷</button></div>
+</div>
+<div class="project-content">
+  <section class="project-scope" aria-labelledby="scope-title">
+    <div><span class="page-subtitle">LINK SOURCE STUDIO</span><h2 id="scope-title">{t('从构想，到体验。','From concept to experience.')}</h2></div>
+    <div><p>{t('我们负责项目的全流程制作，将内容策划、视觉设计、交互与程序开发整合为完整的沉浸式体验。','We delivered the full production, bringing together content planning, visual design, interaction and development into a complete immersive experience.')}</p><ul class="scope-disciplines">{[t('内容策划','Content'),t('视觉设计','Visuals'),t('交互开发','Interaction & development'),t('体验整合','Experience integration')].map(label=><li>{label}</li>)}</ul></div>
+  </section>
+  {p.chapters.map((c,i)=><>
+    <section class:list={['story-block',{'reverse-story':i%2===1}]}>
+      <div class="story-text"><span class="story-index" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><h2>{c.title.split('\n').map(line=><span class="heading-line">{line}</span>)}</h2><p>{c.text}</p><p class="story-detail">{c.detail}</p></div>
+      <figure class="story-img"><div class="story-media"><Photo image={c.image} alt={c.caption} sizes="(max-width:900px) 100vw, 55vw"/></div><figcaption>{c.caption}</figcaption></figure>
+    </section>
+    {i===0&&<aside class="quote-box"><p class="quote-text">{p.statement.split('\n').map(line=><span>{line}</span>)}</p></aside>}
+  </>)}
+  <section class="project-focus" aria-labelledby="focus-title"><h2 id="focus-title">{t('创作重点','Creative focus')}</h2><div class="focus-grid">{p.focus.map(f=><div><h3>{f.title}</h3><p>{f.text}</p></div>)}</div></section>
+</div>
+</>}
+{p.placeholder&&<section class="project-preview-note"><span class="page-subtitle">{t('概念占位','CONCEPT PREVIEW')}</span><h2>{t('项目内容，敬请期待。','More to be revealed.')}</h2><p>{t('当前画面为概念示意，非游戏实机画面。项目名称、玩法与正式素材待补充。','This concept artwork is a visual placeholder, not gameplay footage. The project title, gameplay details and official assets will follow.')}</p></section>}
+<section class="booking-section"><div><span class="page-subtitle">{t('开启合作','LET’S COLLABORATE')}</span><h2>{t('一起创造新的体验。','Create a new experience together.')}</h2></div><a class="btn-book" href={href('/collaboration/')}>{t('联系合作','Get in touch')} <span aria-hidden="true">↗</span></a></section>
+<a class="next-project" href={href('/projects/'+n.slug+'/')}><div class="next-project-media" style={'--scene-name:scene-'+n.slug}><Photo image={n.image} alt="" sizes="100vw"/></div><div class="next-project-shade"></div><div class="next-project-copy"><span class="page-subtitle">{t('下一个作品','NEXT PROJECT')}</span><h2>{n.title}</h2></div><span class="next-project-arrow" aria-hidden="true">↗</span></a>
+<a class="more-work" href={href('/projects/')}>{t('查看所有作品','View all projects')} →</a>
+</article>
+</Layout>

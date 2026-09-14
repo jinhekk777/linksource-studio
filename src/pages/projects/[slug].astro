@@ -1,0 +1,9 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import {getVisibleProjects} from '../../data/project-catalog';
+import Project from '../../views/Project.astro';
+export async function getStaticPaths(){const projects=await getVisibleProjects();return projects.map((project,i)=>({params:{slug:project.data.slug},props:{project,next:projects[(i+1)%projects.length]}}));}
+interface Props {project:CollectionEntry<'projects'>;next:CollectionEntry<'projects'>;}
+const {project,next}=Astro.props;
+---
+<Project locale="zh" project={project} next={next} />

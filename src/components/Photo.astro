@@ -1,0 +1,6 @@
+---
+import {withBase} from '../data/urls';
+interface Props { image: string; alt: string; class?: string; priority?: boolean; sizes?: string; }
+const {image,alt,class:className='',priority=false,sizes='100vw'}=Astro.props;
+---
+<img class={className} src={withBase('/images/'+image+'-1920.webp')} srcset={[480,960,1920].map(w=>withBase('/images/'+image+'-'+w+'.webp')+' '+w+'w').join(', ')} sizes={sizes} alt={alt} width="1920" height="1152" loading={priority?'eager':'lazy'} fetchpriority={priority?'high':'auto'} decoding="async" />

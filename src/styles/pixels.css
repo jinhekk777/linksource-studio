@@ -1,0 +1,22 @@
+/* Keep the pixel language in the wordmark, action icons and active states. */
+.pixel-mark { display: block; flex: none; }
+.header-location { font-size: 9px; letter-spacing: .12em; }
+.hero-period { color: var(--text); }
+.pixel-cross { display: inline-flex; align-items: center; flex: none; }
+.pixel-cross>.pixel-mark { width: .86em; height: .86em; }
+.chapter-visual { display: block; }
+.chapter-visual:focus-visible { outline: 2px solid var(--accent); outline-offset: -8px; }
+.chapter-visual:hover .circle-link svg { transform: rotate(45deg); background: var(--text); color: var(--bg); }
+.world-index button>span:last-child::after { content: ''; width: 4px; height: 4px; background: currentColor; opacity: 0; transform: translateX(-5px); transition: transform .6s var(--ease-out), opacity .6s var(--ease-out); }
+.world-index button[aria-pressed=true]>span:last-child::after { opacity: 1; transform: translateX(0); }
+@media (hover: hover) and (pointer: fine) {
+  .project-card-image .card-open, .collab-image .card-open { transition: opacity .35s ease, transform .65s var(--ease-out); }
+  .project-card-image:hover .card-open, .collab-image:hover .card-open { transform: translate(3px,-3px); }
+}
+@media (max-width: 1050px) { .header-location { display: none; } }
+@media (max-width: 760px) {
+  .menu-toggle { gap: 5px; }
+  .menu-toggle>span { width: 4px; height: 4px; background: currentColor; box-shadow: 9px 0 0 currentColor, 18px 0 0 currentColor; transform: translateX(-9px); }
+  .footer-bottom>.footer-signature { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .pixel-mark rect { transform: none!important; } }

@@ -1,0 +1,14 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import Photo from './Photo.astro';
+import Arrow from './Arrow.astro';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props {project:CollectionEntry<'projects'>;locale?:Locale;}
+const {project,locale='zh'}=Astro.props, p=project.data, t=choose(locale);
+const link=localePath(`/projects/${p.slug}/`,locale);
+---
+<article class="project-card" data-category={p.group}>
+  <a href={link} class="project-card-image" data-world-transition style={`--world-transition:world-${p.slug}`} data-cursor-label={t('查看项目','VIEW PROJECT')}><Photo image={p.image} alt={t(`${p.title}项目场景`,`${p.title} — project scene`)} sizes="(max-width: 760px) 100vw, 50vw" /><span class="card-open"><Arrow /></span></a>
+  <div class="card-title"><h2><a href={link}>{p.title}</a></h2><span class="eyebrow">0{p.order}</span></div>
+  <p class="card-category">{p.category}</p>
+</article>

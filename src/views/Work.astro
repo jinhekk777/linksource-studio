@@ -1,0 +1,14 @@
+---
+import {getVisibleProjects} from '../data/project-catalog';
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import {localizeProject} from '../data/projects-localized';
+import {choose,localePath,type Locale} from '../data/i18n';
+interface Props {locale:Locale;}
+const {locale}=Astro.props,t=choose(locale),href=(p:string)=>localePath(p,locale);
+const projects=(await getVisibleProjects()).map(p=>localizeProject(p,locale).data);
+---
+<Layout title={t('所有体验','All experiences')} page="works" locale={locale}>
+<header class="page-header"><h1 class="page-title serif-font">{t('探索所有体验','Explore our experiences')}</h1><p class="page-desc">{t('打破时空界限，走进故事与想象中的世界。','Step beyond the everyday, into worlds of stories and imagination.')}</p></header>
+<div class="works-container">{projects.map(p=><article class="work-item" id={'world-'+p.slug}><a class="work-visual" href={href('/projects/'+p.slug+'/')}><div class="work-media" style={'--scene-name:scene-'+p.slug}><Photo image={p.image} alt={p.placeholder?t('机甲 VR 游戏概念视觉','Mecha VR concept artwork'):p.title} sizes="(max-width:900px) 100vw, 50vw"/></div><span class="btn-capsule">{p.placeholder?t('项目预告','Project preview'):t('探索详情','Explore more')} →</span></a><div class="work-text"><span class="work-tag">{p.category}</span><h2 class="work-title serif-font">{p.title}</h2><p class="work-desc">{p.description}</p></div></article>)}</div>
+</Layout>

@@ -1,0 +1,5 @@
+---
+import {withBase} from '../data/urls';
+const { large=false }=Astro.props;
+---
+<span class:list={['wordmark',{large}]}><img src={withBase('/logo.svg')} width="112" height="49" alt="LiNK" /><span>SOURCE STUDIO</span></span>

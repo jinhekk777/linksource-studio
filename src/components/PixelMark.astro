@@ -1,0 +1,11 @@
+---
+interface Props { class?: string; }
+const {class:className=''}=Astro.props;
+// The same separated square cells as the wordmark, used as a small brand motif.
+const pattern = ['00100','00100','11111','00100','00100'];
+const cells=pattern.flatMap((row,y)=>[...row].flatMap((cell,x)=>cell==='0'?[]:[{x,y}]));
+const dimension=pattern.length*16-5;
+---
+<svg class:list={['pixel-mark',className]} viewBox={`0 0 ${dimension} ${dimension}`} fill="currentColor" aria-hidden="true">
+  {cells.map(cell=><rect x={cell.x*16} y={cell.y*16} width="11" height="11" />)}
+</svg>

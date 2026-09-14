@@ -1,0 +1,8 @@
+---
+import {withBase} from '../data/urls';
+import {choose,ui,type Locale} from '../data/i18n';
+interface Props { id:string; title:string; image:string; label?:string; round?:boolean; locale?:Locale; }
+const {id,title,image,round=false,locale='zh'}=Astro.props;
+const t=choose(locale), label=Astro.props.label??ui[locale].watch;
+---
+<button type="button" class:list={['film-button',{round}]} data-magnet={round?true:undefined} data-cursor-label={t('观看影片','PLAY FILM')} data-film={id} data-title={title} data-poster={withBase('/images/'+image+'-1920.webp')} aria-label={t(`观看${title}项目影片`,`Watch the ${title} project film`)}><span class="play-icon" data-magnet-face={round?true:undefined} aria-hidden="true"><span class="play-glyph">▶</span></span><span>{label}</span></button>

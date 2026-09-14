@@ -1,0 +1,27 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import {getVisibleProjects} from '../../data/project-catalog';
+import Home from '../../views/Home.astro';
+import Work from '../../views/Work.astro';
+import Project from '../../views/Project.astro';
+import Expertise from '../../views/Expertise.astro';
+import Studio from '../../views/Studio.astro';
+import Collaboration from '../../views/Collaboration.astro';
+import NotFound from '../../views/NotFound.astro';
+export async function getStaticPaths(){
+ const projects=await getVisibleProjects();
+ return [
+  ...[undefined,'projects','expertise','studio','collaboration','404'].map(path=>({params:{path},props:{page:path??'home'}})),
+  ...projects.map((project,i)=>({params:{path:`projects/${project.data.slug}`},props:{page:'case',project,next:projects[(i+1)%projects.length]}}))
+ ];
+}
+interface Props {page:string;project?:CollectionEntry<'projects'>;next?:CollectionEntry<'projects'>;}
+const {page,project,next}=Astro.props;
+---
+{page==='home'&&<Home locale="en" />}
+{page==='projects'&&<Work locale="en" />}
+{page==='expertise'&&<Expertise locale="en" />}
+{page==='studio'&&<Studio locale="en" />}
+{page==='collaboration'&&<Collaboration locale="en" />}
+{page==='404'&&<NotFound locale="en" />}
+{page==='case'&&project&&next&&<Project locale="en" project={project} next={next} />}
