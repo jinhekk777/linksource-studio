@@ -15,7 +15,7 @@ LINK SOURCE STUDIO 官网，基于 Astro 静态生成，包含中英文首页、
 - npm run build:pages：构建并校验 GitHub Pages 版本。
 - npm run preview：预览构建结果，默认端口 4174。
 
-GitHub Pages 目标地址：https://jinhekk777.github.io/linksource-studio/ 。正式发布状态见仓库 Actions 和 Settings → Pages。参阅 [部署说明](docs/deployment.md)。
+独立域名目标地址：https://linksourcegames.com/ 。本分支为域名迁移准备；正式启用前需在阿里云恢复解析，并配置 GitHub Pages Custom domain。参阅 [部署说明](docs/deployment.md)。
 
 ## 维护
 
