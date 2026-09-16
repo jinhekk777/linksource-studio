@@ -10,9 +10,9 @@
 
 2026-09-16 已完成域名切换。注册局状态为 active，DNS 为 DNS19.HICHINA.COM / DNS20.HICHINA.COM。阿里云五条网站解析已启用，Google、Cloudflare 和 GitHub Pages DNS 健康检查均通过。
 
-HTTP 网站已经可用；HTTPS 证书仍在 GitHub 签发中，尚未启用 Enforce HTTPS。2026-09-16 已按 GitHub 官方指引重新保存同一自定义域名，重新触发证书签发。
+2026-09-16 22:06（北京时间）已确认 HTTPS 证书签发成功，覆盖 linksourcegames.com 与 www.linksourcegames.com。已启用 Enforce HTTPS，HTTP 自动跳转到 HTTPS，www 自动跳转到主域名；仓库官网链接已更新为 https://linksourcegames.com/。
 
-已通过 32 项在线检查，包括 16 个中英文内容页、2 个旧入口跳转、11 个图片/视频资源、www 与原 GitHub 地址的跳转，以及 404。
+HTTPS 上线后已通过 35 项在线检查，包括 16 个中英文内容页、2 个旧入口跳转、11 个图片/视频资源、样式文件、根域名与 www 的 HTTP 跳转、www 的 HTTPS 跳转、原 GitHub 地址的跳转，以及 404。浏览器已正常打开正式官网，内容页未发现 HTTP 图片或视频引用。
 
 ## 阿里云解析
 
