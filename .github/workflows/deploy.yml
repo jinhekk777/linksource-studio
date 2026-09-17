@@ -40,3 +40,18 @@ jobs:
       - name: Publish website
         id: deployment
         uses: actions/deploy-pages@v5
+
+  verify-live:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify public website, search files and HTTPS
+        run: npm run verify:live

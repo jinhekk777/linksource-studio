@@ -12,10 +12,17 @@ LINK SOURCE STUDIO 官网，基于 Astro 静态生成，包含中英文首页、
 - npm run check：Astro / TypeScript 检查。
 - npm run build：本地根路径构建。
 - npm run verify：校验页面、语言切换、媒体、字体和链接。
+- npm run verify:live：检查正式域名的页面、媒体、搜索文件、404 和 HTTPS 跳转，输出 qa/live-check.json。
 - npm run build:pages：构建并校验 GitHub Pages 版本。
 - npm run preview：预览构建结果，默认端口 4174。
 
-独立域名目标地址：https://linksourcegames.com/ 。本分支为域名迁移准备；正式启用前需在阿里云恢复解析，并配置 GitHub Pages Custom domain。参阅 [部署说明](docs/deployment.md)。
+正式官网：https://linksourcegames.com/ 。GitHub Pages 自定义域名与强制 HTTPS 已启用；推送 main 后自动检查、构建、部署，再验证线上页面。参阅 [部署说明](docs/deployment.md)。
+
+## 搜索与上线检查
+
+构建自动生成 robots.txt 和 sitemap.xml，包含所有公开项目的中英文页面，排除错误页与旧入口。页面提供 canonical、自身与对应语言的 hreflang、Open Graph / Twitter 分享信息；首页提供工作室与网站的结构化数据。本地未设置 PUBLIC_SITE_URL 时禁止索引，不发布 localhost 站点地图。
+
+Actions 中的 Check live website 可以手动检查线上状态；Deploy website 每次部署成功后也会检查。检查不采集访客数据、不等同于持续可用性监控。访客统计和 Google / 百度平台验证仍待账号准备后接入；提交站点地图不保证即时收录。
 
 ## 维护
 

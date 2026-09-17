@@ -74,3 +74,40 @@ for(const file of files.filter(f=>f.endsWith('.css')||f.endsWith('.html'))) {
   }
 }
 console.log('Responsive images, CSS fonts/cursors and deployment prefix verified: '+(base||'/'));
+
+const site=process.env.PUBLIC_SITE_URL;
+const robots=await fs.readFile(path.join(root,'robots.txt'),'utf8');
+const sitemap=await fs.readFile(path.join(root,'sitemap.xml'),'utf8');
+const locations=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+const indexablePages=[...pageCache].filter(([file,html])=>!file.includes('404')&&!html.includes('data-redirect='));
+if(site){
+  const absolute=p=>new URL(base+p,site).href;
+  const expected=indexablePages.map(([file])=>absolute('/'+file.replaceAll(path.sep,'/').replace(/index\.html$/,'')));
+  assert.deepEqual([...locations].sort(),expected.sort(),'Sitemap covers every public content page exactly once');
+  assert.ok(robots.includes('Sitemap: '+absolute('/sitemap.xml')),'Robots points at the deployed sitemap');
+  assert.doesNotMatch(robots,/Disallow:\s*\//,'Production crawling is allowed');
+  for(const [file,html] of pageCache){
+    if(file.includes('404')||html.includes('data-redirect=')){
+      assert.match(html,/<meta name="robots" content="noindex/,'Error and alias pages stay out of search');
+      continue;
+    }
+    const current='/'+file.replaceAll(path.sep,'/').replace(/index\.html$/,'');
+    const neutral=current.replace(/^\/en(?=\/)/,'')||'/';
+    assert.ok(html.includes('rel="canonical" href="'+absolute(current)+'"'),file+': canonical URL');
+    for(const [lang,url] of [['zh-CN',absolute(neutral)],['en',absolute('/en'+neutral)],['x-default',absolute(neutral)]]){
+      assert.ok(html.includes('hreflang="'+lang+'" href="'+url+'"'),file+': complete language alternatives');
+    }
+    assert.doesNotMatch(html,/<meta name="robots" content="[^"]*noindex/,file+': content can be indexed');
+    assert.ok(html.includes('property="og:url" content="'+absolute(current)+'"'),file+': share URL');
+    const share=html.match(/property="og:image" content="([^"]+)"/)?.[1];
+    assert.ok(share&&new URL(share).origin===new URL(site).origin,file+': absolute share image');
+    await fs.access(path.join(root,stripBase(new URL(share).pathname).slice(1)));
+    for(const json of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)){
+      const data=JSON.parse(json[1]);assert.equal(data['@context'],'https://schema.org');
+    }
+  }
+}else{
+  assert.match(robots,/Disallow: \//,'Local builds discourage indexing');
+  assert.equal(locations.length,0,'Local builds do not publish sitemap URLs');
+}
+console.log('Search discovery, language alternatives, share metadata and error-page indexing verified.');
