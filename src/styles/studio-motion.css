@@ -126,6 +126,6 @@
 .project-preview-note p{font-size:14px;color:var(--muted);max-width:680px;margin:auto}
 @media(max-width:900px){.home-concept-image{object-position:60% center}.project-preview-note{padding-block:64px}}
 
-/* Give the concept silhouette breathing room beneath the persistent navigation. */
+/* The image continues behind the feathered navigation instead of leaving a black strip. */
 #world-mecha .home-scene,.page-project:has(.project-preview-note) .project-scene{background:#0e1219}
-.home-concept-image,.page-project:has(.project-preview-note) .project-background{top:56px;height:calc(100% - 56px);object-position:60% center;mask-image:linear-gradient(to bottom,transparent,#000 40px)}
+.home-concept-image,.page-project:has(.project-preview-note) .project-background{top:0;height:100%;object-position:60% center}
