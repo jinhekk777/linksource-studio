@@ -1,9 +1,9 @@
 export const site = {
   name: 'LINK SOURCE STUDIO',
   description: 'LINK SOURCE STUDIO，探索沉浸式内容、数字体验与视觉创作。走进我们的作品，发现文化、角色与空间中的新故事。',
-  email: null as string | null,
-  phone: null as string | null,
-  wechat: null as string | null,
+  email: '3868577144@qq.com',
+  phone: '19911770003',
+  wechatQr: '/images/wechat-contact.png',
 };
 
 export const capabilities = [

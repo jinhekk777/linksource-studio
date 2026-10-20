@@ -1,0 +1,34 @@
+---
+import { site } from '../data/studio';
+import { choose, type Locale } from '../data/i18n';
+import { withBase } from '../data/urls';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = choose(locale);
+---
+<dl class="contact-info">
+  <div>
+    <dt>{t('商务邮箱', 'EMAIL')}</dt>
+    <dd><a href={'mailto:' + site.email}>{site.email}</a></dd>
+  </div>
+  <div>
+    <dt>{t('联系电话', 'PHONE')}</dt>
+    <dd><a href={'tel:+86' + site.phone}>{site.phone}</a></dd>
+  </div>
+  <div>
+    <dt>{t('微信咨询', 'WECHAT')}</dt>
+    <dd class="contact-wechat">
+      <a class="contact-wechat-code" href={withBase(site.wechatQr)} target="_blank" rel="noopener" aria-label={t('查看微信二维码大图（新窗口）', 'Open full-size WeChat QR code (new tab)')}>
+        <img src={withBase(site.wechatQr)} width="789" height="789" alt={t('LINK SOURCE STUDIO 微信二维码', 'LINK SOURCE STUDIO WeChat QR code')} />
+      </a>
+      <p class="contact-wechat-note">{t('微信扫码联系，点击二维码查看大图。', 'Scan with WeChat to get in touch. Select the code to view it full size.')}</p>
+    </dd>
+  </div>
+</dl>
+<style>
+  .contact-info a:not(.contact-wechat-code) { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+  .contact-wechat { display: grid; gap: 12px; justify-items: start; }
+  .contact-wechat-code { display: block; width: 184px; max-width: 100%; }
+  .contact-wechat-code img { width: 100%; height: auto; }
+  .contact-wechat-note { max-width: 32ch; font-size: 12px; line-height: 1.8; color: var(--muted); }
+</style>
