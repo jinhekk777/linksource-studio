@@ -10,7 +10,7 @@ const files=await fs.readdir(root,{recursive:true});
 assert.ok(!files.some(f=>/(?:^|[\\/])(?:panda|preview-panda)/.test(f)),'Retired media are excluded from published output');
 await fs.access(path.join(root,'.nojekyll'));
 const pages=files.filter(f=>f.endsWith('.html'));
-assert.equal(pages.length,22,'Nine content pages including the Quest policy, one legacy alias and a 404 in each language');
+assert.equal(pages.length,24,'Ten content pages including Quest and PICO policies, one legacy alias and a 404 in each language');
 let links=0,assets=0;
 const coverage=JSON.parse(await fs.readFile(path.join(root,'fonts/coverage.json'),'utf8'));
 const chineseGlyphs=new Set([...coverage.chinese]);
@@ -27,18 +27,18 @@ for(const [file,html] of pageCache){
   assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,`${file}: one main heading`);
   const normalizedFile=file.replaceAll(path.sep,'/');
   const english=normalizedFile.startsWith('en/');
-  const questPolicy=/^(?:en\/)?privacy\/stormframe\/quest\/index\.html$/.test(normalizedFile);
+  const platformPolicy=/^(?:en\/)?privacy\/stormframe\/(?:quest|pico)\/index\.html$/.test(normalizedFile);
   const legalCompany=english?'LINK SOURCE CHONGQING TECHNOLOGY CO LTD':'灵刻起元（重庆）科技有限责任公司';
   const visibleText=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').replace(/<[^>]+>/g,'');
   const missing=[...new Set([...visibleText].filter(c=>/[\u3400-\u9fff]/.test(c)&&!chineseGlyphs.has(c)))];
   // The standalone policy uses native CJK fonts, not the marketing font subset.
-  if(questPolicy){
+  if(platformPolicy){
     assert.ok(html.includes('href="/privacy/stormframe/policy.css"'),file+': standalone policy stylesheet');
     assert.ok(visibleText.includes(legalCompany),file+': exact registered company name');
   }else assert.deepEqual(missing,[],file+': local Chinese font coverage');
   assert.match(html,new RegExp(`<html[^>]+lang="${english?'en':'zh-CN'}"`),`${file}: document language`);
   assert.match(html,/<meta name="description" content="[^"]+"/,`${file}: page description`);
-  assert.doesNotMatch(questPolicy?html.replaceAll(legalCompany,''):html,/3489825746|2138550689|166-0800-7168|灵刻起元/,`${file}: retired contact information and studio name; exact legal entity allowed only in policy`);
+  assert.doesNotMatch(platformPolicy?html.replaceAll(legalCompany,''):html,/3489825746|2138550689|166-0800-7168|灵刻起元/,`${file}: retired contact information and studio name; exact legal entity allowed only in policy`);
   assert.doesNotMatch(html,/山神熊猫|Mountain Panda|(?:href|src)="[^"]*panda/,file+': removed project must not be publicly presented');
   const current='/'+file.replaceAll(path.sep,'/').replace(/index\.html$/,'');
   const counterpart=english?(current==='/en/404/'?'/404.html':current.replace(/^\/en/,'')):(current==='/404.html'?'/en/404/':'/en'+current);
@@ -47,7 +47,7 @@ for(const [file,html] of pageCache){
   for(const link of languageLinks)assert.equal(link[1],base+counterpart,`${file}: language switch preserves page/project`);
   if(english){
     const visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').replace(/<[^>]+>/g,'');
-    const localized=questPolicy?visible.replaceAll(legalCompany,''):visible;
+    const localized=platformPolicy?visible.replaceAll(legalCompany,''):visible;
     assert.doesNotMatch(localized.replaceAll('中文','').replaceAll('切换为',''),/[\u3400-\u9fff]/,`${file}: English visible content is localized`);
   }
   for(const match of html.matchAll(/\b(href|src|poster|data-src|data-poster|data-fallback)="([^"]+)"/g)){
