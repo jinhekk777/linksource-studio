@@ -28,7 +28,7 @@ for(const [file,html] of pageCache){
   const normalizedFile=file.replaceAll(path.sep,'/');
   const english=normalizedFile.startsWith('en/');
   const questPolicy=/^(?:en\/)?privacy\/stormframe\/quest\/index\.html$/.test(normalizedFile);
-  const legalCompany='灵刻起元（重庆）科技有限责任公司';
+  const legalCompany=english?'LINK SOURCE CHONGQING TECHNOLOGY CO LTD':'灵刻起元（重庆）科技有限责任公司';
   const visibleText=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').replace(/<[^>]+>/g,'');
   const missing=[...new Set([...visibleText].filter(c=>/[\u3400-\u9fff]/.test(c)&&!chineseGlyphs.has(c)))];
   // The standalone policy uses native CJK fonts, not the marketing font subset.
