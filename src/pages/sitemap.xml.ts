@@ -7,7 +7,7 @@ const xml = (value: string) => value.replace(/[<>&"']/g, char => ({
 })[char]!);
 
 export const GET: APIRoute = async ({ site }) => {
-  const paths = ['/', '/projects/', '/studio/', '/collaboration/',
+  const paths = ['/', '/projects/', '/studio/', '/collaboration/', '/privacy/stormframe/quest/',
     ...(await getVisibleProjects()).map(project => `/projects/${project.data.slug}/`)];
   // A local preview must not advertise localhost URLs to search engines.
   const entries = site ? paths.flatMap(path => {

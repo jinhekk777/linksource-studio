@@ -102,7 +102,7 @@ const projects=(await getVisibleProjects()).map(p=>localizeProject(p,locale).dat
 </header>
 <dialog id="mobile-menu" aria-label={t('网站导航','Site navigation')}><div class="menu-head"><Logo/><button class="menu-close" aria-label={t('关闭导航','Close navigation')}>×</button></div><nav><a href={href('/')}>{t('首页','Home')}</a><a href={href('/projects/')}>{t('所有体验','All experiences')}</a><a href={href('/studio/')}>{t('关于我们','About us')}</a><a href={href('/collaboration/')}>{t('联系我们','Contact')}</a></nav></dialog>
 <main id="main"><slot/></main>
-<footer class="site-footer">© {new Date().getFullYear()} LINK SOURCE STUDIO. {t('版权所有。','All rights reserved.')}</footer>
+<footer class="site-footer"><span>© {new Date().getFullYear()} LINK SOURCE STUDIO. {t('版权所有。','All rights reserved.')}</span><a class="footer-privacy" href={href('/privacy/stormframe/quest/')}>STORMFRAME · Privacy</a></footer>
 <dialog id="film-dialog" aria-labelledby="film-title"><div class="film-head"><h2 id="film-title">{t('项目影片','Project film')}</h2><button class="film-close" type="button" aria-label={t('关闭影片','Close film')}>×</button></div><video id="film-video" controls playsinline preload="none"></video><p id="film-status" role="status"></p></dialog>
 <script>import '../scripts/newbee'; import '../scripts/studio-motion';</script>
 </body>
