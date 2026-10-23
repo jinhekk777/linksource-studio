@@ -2,22 +2,50 @@
   "slug": "mecha",
   "order": 0,
   "listed": true,
-  "placeholder": true,
-  "title": "机甲 VR 游戏",
-  "name": "机甲 VR 游戏",
-  "subtitle": "项目概念占位",
-  "english": "MECHA VR",
-  "category": "VR 游戏 · 概念占位",
+  "placeholder": false,
+  "title": "STORMFRAME",
+  "name": "STORMFRAME",
+  "subtitle": "第一人称 VR 机甲动作游戏",
+  "english": "STORMFRAME",
+  "category": "VR 机甲动作游戏",
   "group": "科幻游戏",
-  "summary": "进入巨型机甲的世界。",
-  "headline": "进入巨型机甲的世界。",
-  "description": "巨型机甲题材 VR 游戏。项目名称与正式内容待公布。",
-  "image": "mecha-concept",
+  "summary": "抬手格挡，挥拳反击。用双手操控机甲，迎战巨型敌人。",
+  "headline": "以你的双手，驱动机甲。",
+  "description": "进入机甲驾驶舱，用双手格挡、挥拳与射击。组合近战和远程武器，升级机甲，在无尽模式中迎接下一波挑战。",
+  "image": "stormframe-3",
+  "video": "stormframe",
   "heroLines": [
-    "机甲 VR 游戏"
+    "STORMFRAME"
   ],
-  "statement": "",
+  "statement": "抬手格挡。\n挥拳反击。",
   "accent": "#7d8bff",
-  "chapters": [],
-  "focus": []
+  "chapters": [
+    {
+      "title": "看准破绽，\n用双手反击。",
+      "image": "stormframe-2",
+      "caption": "STORMFRAME / 第一人称近身交锋",
+      "text": "观察敌人的动作，抬起双臂格挡，在破绽出现时挥拳反击。抓取、投掷物体，或接续近战武器攻击，让每次交锋都有不同的应对。",
+      "detail": "双手操控 · 格挡反击 · 抓取投掷"
+    },
+    {
+      "title": "近战与火力，\n随战局切换。",
+      "image": "stormframe-4",
+      "caption": "STORMFRAME / 驾驶舱与机甲操控",
+      "text": "将近战攻击与远程火力组合运用，应对不同的战斗遭遇。逐步解锁武器、升级机甲，找到适合自己的战斗方式。",
+      "detail": "近战武器 · 远程火力 · 机甲升级"
+    },
+    {
+      "title": "迎接下一波，\n刷新自己的纪录。",
+      "image": "stormframe-5",
+      "caption": "STORMFRAME / 与巨型敌人交战",
+      "text": "解锁无尽模式后，迎战连续出现的敌人。利用每次挑战中获得的补给与升级，在战斗中坚持更久，突破自己的纪录。",
+      "detail": "无尽模式 · 连续挑战 · 补给与成长"
+    }
+  ],
+  "focus": [
+    {"title": "单人 VR 战斗", "text": "以第一人称视角操控机甲，支持坐姿和站姿游玩，无需持续联网。"},
+    {"title": "双手动作输入", "text": "使用两只 6DoF 控制器，将双手的格挡、挥击与瞄准动作带入战斗。"},
+    {"title": "Meta Quest 平台", "text": "适配 Meta Quest 3、Quest 3S、Quest Pro 与 Quest 2。支持中文、英文等八种语言。"}
+  ],
+  "role": "全流程制作"
 }

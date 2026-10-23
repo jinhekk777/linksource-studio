@@ -191,7 +191,7 @@ if(drop){
 let filmTrigger:HTMLButtonElement|null=null;
 document.querySelectorAll<HTMLButtonElement>('[data-film]').forEach(b=>b.addEventListener('click',()=>{
  const slug=b.dataset.film;
- if(!slug||!['taosi','zhongkui','bxcz'].includes(slug))return;
+ if(!slug||!['taosi','zhongkui','bxcz','stormframe'].includes(slug))return;
  filmTrigger=b;
  document.querySelector('#film-title')!.textContent=b.dataset.title+' / '+t('项目影片','Project film');
  document.querySelector('#film-status')!.textContent='';

@@ -23,7 +23,8 @@ for(const width of [1440,390,320])for(const lang of ['zh','en']){
 }
 const p=await b.newPage({viewport:{width:1440,height:900}});p.on('pageerror',e=>errors.push(e.message));
 await p.goto(base+'/');await p.waitForTimeout(1200);
-assert.equal(await p.locator('[data-home-video][src]').count(),0,'Concept preview does not load a video');
+assert.equal(await p.locator('#world-mecha [data-home-video]').getAttribute('data-src'),'/media/stormframe-preview.mp4','STORMFRAME uses its official gameplay preview');
+assert.ok(await p.locator('[data-background-toggle]').isVisible(),'The game preview has a playback control');
 await p.mouse.move(750,400);await p.mouse.wheel(0,500);await p.waitForTimeout(500);assert.equal(await p.locator('.home-showcase').getAttribute('data-active-project'),'mecha','Small wheel gestures linger on the same scene');assert.ok(Math.abs((await p.locator('.home-project-frame').first().boundingBox()).y)<2);await p.mouse.wheel(0,900);await p.waitForTimeout(800);assert.equal(await p.locator('.home-showcase').getAttribute('data-active-project'),'zhongkui');
 await p.locator('[data-slide="2"]').click();await p.waitForFunction(()=>Math.abs(document.querySelector('#world-taosi').getBoundingClientRect().top)<2);assert.equal(await p.locator('.home-showcase').getAttribute('data-active-project'),'taosi');
 assert.ok(await p.locator('[data-home-video]').evaluateAll(v=>v.filter(x=>!x.paused).length<=1),'At most one playing background');

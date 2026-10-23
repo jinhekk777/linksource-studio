@@ -129,3 +129,10 @@
 /* The image continues behind the feathered navigation instead of leaving a black strip. */
 #world-mecha .home-scene,.page-project:has(.project-preview-note) .project-scene{background:#0e1219}
 .home-concept-image,.page-project:has(.project-preview-note) .project-background{top:0;height:100%;object-position:60% center}
+
+/* The single-word game title stays intact at narrow widths. */
+#world-mecha .slide-content h2{font-size:clamp(28px,5vw,72px);white-space:nowrap;letter-spacing:-.03em}
+.project-hero.is-game .hero-title{font-size:clamp(30px,5vw,72px);white-space:nowrap;letter-spacing:-.03em}
+.project-hero.is-game .project-background{object-position:50% 38%}
+.game-film-button{margin-top:28px;background:#090a0c33}
+@media(max-width:900px){#world-mecha .slide-content{max-width:calc(100vw - 44px);padding-right:0}.project-hero.is-game .hero-desc{font-size:14px}.game-film-button{margin-top:20px}}

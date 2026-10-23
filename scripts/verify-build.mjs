@@ -72,6 +72,15 @@ for(const [file,html] of pageCache){
 console.log('Verified '+pages.length+' pages, '+links+' local links and '+assets+' media/script references.');
 console.log('Both locales, reciprocal language links and complete English content verified. Retired contacts are absent.');
 
+for(const prefix of ['', 'en/']){
+  const game=pageCache.get((prefix+'projects/mecha/index.html').replaceAll('/',path.sep));
+  assert.ok(game,'STORMFRAME keeps the existing project URL');
+  assert.match(game,/<h1[^>]*>STORMFRAME<\/h1>/,'Game title is published');
+  assert.match(game,/data-film="stormframe"/,'The official trailer has a working trigger');
+  assert.doesNotMatch(game,/project-preview-note|mecha-concept-|概念占位|Concept preview|大空间自由行走|Free-roaming VR/,'Game replaces the concept and uses the correct play mode');
+  assert.match(game,/stormframe-3-1920.webp/,'Game hero uses official imagery');
+}
+
 for(const file of files.filter(f=>f.endsWith('.css')||f.endsWith('.html'))) {
   const text=await fs.readFile(path.join(root,file),'utf8');
   const current=base+'/'+file.replaceAll(path.sep,'/');

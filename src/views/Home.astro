@@ -8,8 +8,8 @@ import {choose,localePath,type Locale} from '../data/i18n';
 interface Props {locale:Locale;}
 const {locale}=Astro.props,t=choose(locale),href=(s:string)=>localePath(s,locale);
 const projects=(await getVisibleProjects()).map(p=>localizeProject(p,locale).data);
-const sources:Record<string,string>={zhongkui:'/media/zhongkui-preview.mp4',taosi:'/media/taosi-world-preview.mp4',bxcz:'/media/bxcz-preview.mp4'};
-const tags:Record<string,string>={zhongkui:t('东方志怪 · 沉浸式体验','ADVENTURE & MYTHOLOGY'),taosi:t('文明探索 · 沉浸式体验','FEATURED EXPERIENCE'),mecha:t('VR 游戏 · 概念占位','VR GAME · CONCEPT PREVIEW'),bxcz:t('趣味世界 · 亲子冒险','FUN & FAMILY')};
+const sources:Record<string,string>={mecha:'/media/stormframe-preview.mp4',zhongkui:'/media/zhongkui-preview.mp4',taosi:'/media/taosi-world-preview.mp4',bxcz:'/media/bxcz-preview.mp4'};
+const tags:Record<string,string>={zhongkui:t('东方志怪 · 沉浸式体验','ADVENTURE & MYTHOLOGY'),taosi:t('文明探索 · 沉浸式体验','FEATURED EXPERIENCE'),mecha:t('第一人称 VR · 机甲动作','FIRST-PERSON VR · MECH ACTION'),bxcz:t('趣味世界 · 亲子冒险','FUN & FAMILY')};
 ---
 <Layout page="home" locale={locale}>
 <h1 class="sr-only">LINK SOURCE STUDIO — {t('沉浸式体验','Immersive experiences')}</h1>
