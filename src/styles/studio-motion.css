@@ -134,5 +134,5 @@
 #world-mecha .slide-content h2{font-size:clamp(28px,5vw,72px);white-space:nowrap;letter-spacing:-.03em}
 .project-hero.is-game .hero-title{font-size:clamp(30px,5vw,72px);white-space:nowrap;letter-spacing:-.03em}
 .project-hero.is-game .project-background{object-position:50% 38%}
-.game-film-button{margin-top:28px;background:#090a0c33}
-@media(max-width:900px){#world-mecha .slide-content{max-width:calc(100vw - 44px);padding-right:0}.project-hero.is-game .hero-desc{font-size:14px}.game-film-button{margin-top:20px}}
+.info-bar--game{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){#world-mecha .slide-content{max-width:calc(100vw - 44px);padding-right:0}.project-hero.is-game .hero-desc{font-size:14px}.info-bar--game{grid-template-columns:1fr 1fr}.info-bar--game .info-item:last-child{grid-column:1/-1}}

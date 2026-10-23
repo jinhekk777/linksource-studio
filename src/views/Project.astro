@@ -18,14 +18,14 @@ const isGame=p.slug==='mecha'&&!p.placeholder;
   <Photo class="project-background" image={p.image} alt={p.placeholder?t('机甲 VR 游戏概念视觉，非实机画面','Mecha VR concept artwork, not gameplay footage'):t(p.title+'项目场景',p.title+' — project scene')} sizes={p.placeholder||isGame?'(max-width:900px) 1600px, 100vw':'100vw'} priority/>
   <div class="hero-shade" aria-hidden="true"></div>
   </div>
-  <div class="hero-content"><span class="tag">{p.placeholder?t('概念视觉 · 非实机画面','CONCEPT ART · NOT GAMEPLAY'):isGame?t('第一人称 VR · 机甲动作','FIRST-PERSON VR · MECH ACTION'):t('沉浸式体验','IMMERSIVE EXPERIENCE')}</span><h1 class="hero-title">{p.title}</h1><p class="hero-desc">{p.description}</p>{isGame&&p.video&&<button class="btn-book game-film-button" type="button" data-film={p.video} data-title={p.title} data-poster={withBase('/images/'+p.image+'-1920.webp')}>{t('观看游戏影片','Watch gameplay film')} <span aria-hidden="true">▷</span></button>}</div>
+  <div class="hero-content"><span class="tag">{p.placeholder?t('概念视觉 · 非实机画面','CONCEPT ART · NOT GAMEPLAY'):isGame?t('第一人称 VR · 机甲动作','FIRST-PERSON VR · MECH ACTION'):t('沉浸式体验','IMMERSIVE EXPERIENCE')}</span><h1 class="hero-title">{p.title}</h1><p class="hero-desc">{p.description}</p></div>
 </header>
 {!p.placeholder&&<>
-<div class="info-bar">
+<div class:list={['info-bar',{'info-bar--game':isGame}]}>
   <div class="info-item"><h2>{isGame?t('游戏平台','Platform'):t('内容主题','Theme')}</h2><span>{isGame?'Meta Quest':p.category}</span></div>
   <div class="info-item"><h2>{t('体验形式','Format')}</h2><span>{isGame?t('单人 · 坐姿 / 站姿','Single-player · Seated / standing'):t('大空间自由行走','Free-roaming VR')}</span></div>
   <div class="info-item"><h2>{t('我们的职责','Our role')}</h2><span>{p.role}</span></div>
-  {p.video&&<div class="info-item"><h2>{t('项目影片','Project film')}</h2><button class="film-trigger" data-film={p.video} data-title={p.title} data-poster={withBase('/images/'+p.image+'-1920.webp')} type="button">{t('观看影片','Watch film')} ▷</button></div>}
+  {!isGame&&p.video&&<div class="info-item"><h2>{t('项目影片','Project film')}</h2><button class="film-trigger" data-film={p.video} data-title={p.title} data-poster={withBase('/images/'+p.image+'-1920.webp')} type="button">{t('观看影片','Watch film')} ▷</button></div>}
 </div>
 <div class="project-content">
   <section class="project-scope" aria-labelledby="scope-title">

@@ -11,7 +11,7 @@ try{
   const seen=new Set();
   for(let i=0;i<4;i++){
    seen.add(new URL(page.url()).pathname);
-   if(page.url().endsWith('/projects/mecha/')){assert.equal(await page.locator('[data-film="stormframe"]').count(),3);assert.equal(await page.locator('.info-bar').count(),1);assert.equal(await page.locator('.project-preview-note').count(),0);assert.equal((await page.locator('h1').innerText()).trim(),'STORMFRAME')}else{assert.ok((await page.locator('.info-bar').innerText()).includes(lang?'Full-cycle production':'全流程制作'));assert.equal(await page.locator('.focus-grid>div').count(),3)}
+   if(page.url().endsWith('/projects/mecha/')){assert.equal(await page.locator('[data-film="stormframe"]').count(),1);assert.equal(await page.locator('.info-bar').count(),1);assert.equal(await page.locator('.project-preview-note').count(),0);assert.equal((await page.locator('h1').innerText()).trim(),'STORMFRAME')}else{assert.ok((await page.locator('.info-bar').innerText()).includes(lang?'Full-cycle production':'全流程制作'));assert.equal(await page.locator('.focus-grid>div').count(),3)}
    assert.ok(await page.locator('.desktop-nav').isVisible());
    const url=await page.locator('.next-project').getAttribute('href');
    await page.locator('.next-project').click();await page.waitForURL(base+url);
