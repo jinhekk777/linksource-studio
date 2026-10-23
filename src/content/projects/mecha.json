@@ -45,7 +45,7 @@
   "focus": [
     {"title": "单人 VR 战斗", "text": "以第一人称视角操控机甲，支持坐姿和站姿游玩，无需持续联网。"},
     {"title": "双手动作输入", "text": "使用两只 6DoF 控制器，将双手的格挡、挥击与瞄准动作带入战斗。"},
-    {"title": "Meta Quest / PICO", "text": "支持 Meta Quest 与 PICO 平台。Meta Quest 版本适配 Quest 3、Quest 3S、Quest Pro 与 Quest 2，支持中文、英文等八种语言。"}
+    {"title": "Meta Quest / PICO", "text": "支持 Meta Quest 与 PICO 平台，支持中文、英文等八种语言。"}
   ],
   "role": "全流程制作"
 }
